@@ -33,7 +33,7 @@ function Navbar({user,setUser}) {
         <a className="nav-link" href="#">Products</a>
       </li>        
       <li className="nav-item">
-        <a className="nav-link" href="#">cart</a>
+        <Link className="nav-link" to="/cart">cart</Link>
       </li>
      
      
@@ -52,7 +52,7 @@ function Navbar({user,setUser}) {
         
         </>:
         <>
-        <li><Link className="dropdown-item" to='/register'>profile</Link></li>
+        <li><Link className="dropdown-item" to='/register'>products</Link></li>
         <li><hr className="dropdown-divider" /></li>
         <li><Link className="dropdown-item" to='/login'>logout</Link></li>
         

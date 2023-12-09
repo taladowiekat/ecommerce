@@ -7,7 +7,8 @@ function CategoriesDetails() {
     
     const{categoryId}=useParams();
     const getCategoryDetails=async()=>{
-        const {data}=await axios.get(`${import.meta.env.VITE_APT_URL}/products/category/${categoryId}`);
+        // const {data}=await axios.get(`${import.meta.env.VITE_APT_URL}/products/category/${categoryId}`);
+        const {data}=await axios.get(`${import.meta.env.VITE_API_URL}/products/category/${categoryId}`);
         console.log(data);
         return data.products
     }
@@ -17,7 +18,7 @@ return <p>lading ....</p>
 }
   return (
     <div className="products">
-        {/* {
+        {
             data.length?data.map((product)=>
             <div className="product" key={product._id}>
                 <img src={product.mainImage.secure_url} alt="" />
@@ -25,7 +26,7 @@ return <p>lading ....</p>
                 <Link to={`/product/${product._id}`}>details</Link>
             </div>
             ):<h2>no product</h2>
-        } */}
+        }
     </div>
   )
 }

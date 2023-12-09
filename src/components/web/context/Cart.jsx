@@ -2,13 +2,13 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { toast } from 'react-toastify';
 
-export const cartConst = createContext(null);
-export function createContextProvider({children}){
-
+export const CartContext = createContext(1);
+export function CartContextProvider({children}){
     const addToCartContext =async (productId)=>{
         try{
             const token = localStorage.getItem("userToken");
-            const {data}=await axios.post(`${import.meta.env.VITE_API_URL}/cart`,{productId},{headers:{Authorization:`Tariq__${token}`}})
+            const {data}=await axios.post(`${import.meta.env.VITE_API_URL}/cart`,
+            {productId},{headers:{Authorization:`Tariq__${token}`}})
             if(data.message=='success'){
                 toast("product added successfully",{
                     position: 'buttom-center',
@@ -27,7 +27,40 @@ export function createContextProvider({children}){
             console.log(error);
         }
     }
-    return <cartConst.Provider value={addToCartContext}>
+
+    const getCartContext=async()=>{
+        try{const token = localStorage.getItem("userToken");
+        const {data} = await axios.get(`${import.meta.env.VITE_API_URL}/cart`,
+        {headers:{Authorization:`Tariq__${token}`}}
+        );
+    return data;
+    }
+        catch(error){console.log(error);}
+    }
+
+    
+    
+    
+
+    const removeItemContext = async (productId)=>{
+    try{
+    const token =localStorage.getItem("userToken");
+    const {data} = await axios.patch(`${import.meta.env.VITE_API_URL}/cart/removeItem`, {productId}
+    ,{
+        headers: {Authorization: `Tariq_${token}`}
+    })
+    
+    
+    return data;
+    }catch(error) {
+        console.log("error"); console.log(error);
+    }
+    
+    
+
+    }
+
+    return <CartContext.Provider value={{addToCartContext , getCartContext ,removeItemContext}}>
         {children}
-    </cartConst.Provider>
+    </CartContext.Provider>;
 }

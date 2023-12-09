@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import {jwtDecode} from 'jwt-decode';
 import CategoriesDetails from "./components/web/categories/CategoriesDetails.jsx";
 import Product from "./components/web/products/Product.jsx";
+import Cart from "./components/web/cart/Cart.jsx";
 export default function App() {
 
 
@@ -47,6 +48,11 @@ export default function App() {
             // path:'/',
             index:true,
             element:<Home />
+          },
+          {
+
+            path:'cart',
+            element:<Cart />
           },
           {
             path:'products/category/:categoryId',

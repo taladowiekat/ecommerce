@@ -3,11 +3,11 @@ import React, { useContext } from 'react'
 import { useQuery } from 'react-query';
 import { useParams } from 'react-router-dom'
 import ReactImageMagnify from 'react-image-magnify';
-import { cartConst } from '../context/Cart.jsx';
+import { CartContext } from '../context/Cart.jsx';
 
 function Product() {
     const { productId } = useParams();
-    const {addToCartContext}=useContext(cartConst)
+    const {addToCartContext}=useContext(CartContext)
     const getProduct = async () => {
         const { data } = await axios.get(`${import.meta.env.VITE_APT_URL}/products/category/${productId}`);
         return data.product;
@@ -51,7 +51,7 @@ function Product() {
                 <div className="col-lg-8">
                     <h2>{data.name}</h2>
                     <p>{data.price}</p>
-                    <button className='btn btn-outline-info' onClick={()=>{addToCart}}>Add To Cart</button>
+                    <button className='btn btn-outline-info' onClick={()=>{addToCart(data._id)}}>Add To Cart</button>
                 </div>
             </div>
         </div>

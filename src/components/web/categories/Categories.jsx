@@ -12,7 +12,7 @@ import { Link } from 'react-router-dom';
 
 function Categories() {
 const getCategories = async()=>{
-  const {data}=await axios.get(`${import.meta.env.VITE_API_URL}/categories`)
+  const {data}=await axios.get(`${import.meta.env.VITE_API_URL}/categories/active?limit=100`)
   return data
 }
 const {data,isLoading} =useQuery('web_categories',getCategories)
@@ -37,8 +37,8 @@ if(isLoading){
       <div className=".swiper-custom-pagination"></div>
     <Swiper
      modules={[Navigation, Pagination,Autoplay ]}
-      spaceBetween={50}
-      slidesPerView={2.2}
+      spaceBetween={20}
+      slidesPerView={4}
       navigation
       loop={true}
       autoplay={

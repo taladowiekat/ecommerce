@@ -1,8 +1,9 @@
 import React from 'react'
+import Categories from '../categories/Categories.jsx'
 
 function Home() {
   return (
-    <div>Home</div>
+    <Categories/>
   )
 }
 
